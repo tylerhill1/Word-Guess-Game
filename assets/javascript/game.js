@@ -11,8 +11,11 @@ var words = [
     "cycling",
     "weightlifting",
 ]
-var correctLetterCounter;
+var lengthOfGame = words.length;
+var tracker = 0;
 var wins = 0;
+
+var correctLetterCounter;
 
 console.log(words);
 
@@ -110,19 +113,17 @@ document.onkeyup = function(event) {
     }
 
     console.log("displayed word length: " + displayedWord.length)
+
+    if(correctLetterCounter === displayedWord.length) {
+        
+        displayedWord = []
+        words.splice(number, 1);
+        newWord();
+        displayWord();
+        wins++;
+        console.log(wins);
+        }
 }
-
-
-if(correctLetterCounter === displayedWord.length) {
-    displayedWord = []
-    newWord();
-    displayWord();
-    wins++;
-    console.log(wins);
-    }
-
-
-
 
 
 
