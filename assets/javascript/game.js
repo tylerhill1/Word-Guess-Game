@@ -31,6 +31,8 @@ function newWord() {
     // pulls the element with that index from the array
     var number = generateRandomInteger(min, max);
     var currentWord = words[number];
+    words.splice(number, 1);
+    console.log("new array: " + words);
     console.log(currentWord);
 
     correctLetterCounter = 0;
@@ -39,7 +41,7 @@ function newWord() {
 
 var currentWord = newWord();
 console.log(currentWord);
-var displayedWord = []
+var displayedWord = [];
 
 function displayNewWord() {
     document.getElementById("currentWord").innerHTML = "";
@@ -116,10 +118,11 @@ document.onkeyup = function(event) {
 
     if(correctLetterCounter === displayedWord.length) {
         
-        displayedWord = []
-        words.splice(number, 1);
-        newWord();
+        displayedWord = [];
+        currentWord = newWord();
+        // var currentWord = newWord();
         displayWord();
+        // console.log(currentWord);
         wins++;
         console.log(wins);
         }
