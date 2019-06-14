@@ -87,6 +87,17 @@ document.onkeyup = function(event) {
     if(k===0) {
         incorrectGuessesRemaining--;
         document.getElementById("guesses").innerHTML = incorrectGuessesRemaining;
+        if(incorrectGuessesRemaining==0) {
+
+            incorrectGuessesRemaining = 6;
+            document.getElementById("guesses").innerHTML = incorrectGuessesRemaining;
+            displayedWord = [];
+            currentWord = newWord();
+            // var currentWord = newWord();
+            displayWord();
+            // console.log(currentWord);
+            return;
+        }
     }
     
     for(i=0; i<displayedWord.length; i++) {
