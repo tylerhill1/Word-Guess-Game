@@ -15,6 +15,7 @@ var lengthOfGame = words.length;
 var tracker = 0;
 var wins = 0;
 var incorrectGuessesRemaining = 6;
+var incorrectGuesses = [];
 
 var correctLetterCounter;
 
@@ -85,10 +86,27 @@ document.onkeyup = function(event) {
     }
 
     if(k===0) {
+        for(i=0; i<incorrectGuesses.length; i++) {
+            if(letter === incorrectGuesses[i]) {
+                console.log("TEST");
+                return;
+            }
+        }
         incorrectGuessesRemaining--;
         document.getElementById("guesses").innerHTML = incorrectGuessesRemaining;
-        if(incorrectGuessesRemaining==0) {
+        incorrectGuesses.push(letter);
 
+        var check = document.getElementById("guessedLetters").innerHTML;
+        if(check === "") {
+            document.getElementById("guessedLetters").innerHTML = letter;
+        }
+        else {
+            document.getElementById("guessedLetters").innerHTML = document.getElementById("guessedLetters").innerHTML + ", " + letter;
+        }
+
+        if(incorrectGuessesRemaining==0) {
+            incorrectGuesses = [];
+            document.getElementById("guessedLetters").innerHTML = "";
             incorrectGuessesRemaining = 6;
             document.getElementById("guesses").innerHTML = incorrectGuessesRemaining;
             displayedWord = [];
