@@ -179,3 +179,9 @@ document.onkeyup = function(event) {
         }
 }
 
+function playAudio(url) {
+    var a = new Audio(url);
+    a.play();
+    document.getElementById("btn1").disabled = true; 
+  }
+
