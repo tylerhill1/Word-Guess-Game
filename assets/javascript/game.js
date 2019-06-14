@@ -125,6 +125,7 @@ document.onkeyup = function(event) {
         // console.log(currentWord);
         wins++;
         console.log(wins);
+        document.getElementById("wins").innerHTML = wins;
         }
 }
 
