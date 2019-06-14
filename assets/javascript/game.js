@@ -10,6 +10,8 @@ var words = [
     "rugby",
     "cycling",
     "weightlifting",
+    "luge",
+    "skeleton",
 ]
 var lengthOfGame = words.length;
 var tracker = 0;
@@ -73,6 +75,9 @@ function spliceArray(x, y) {
 document.onkeyup = function(event) {
     
     var letter = event.key.toLowerCase();
+    if (letter != "a" && letter != "b" && letter != "c" && letter != "d" && letter != "e" && letter != "f" && letter != "g" && letter != "h" && letter != "i" && letter != "j" && letter != "k" && letter != "l" && letter != "m" && letter != "n" && letter != "o" && letter != "p" && letter != "q" && letter != "r" && letter != "s" && letter != "t" && letter != "u" && letter != "v" && letter != "w" && letter != "x" && letter != "y" && letter != "z") {
+        return;
+    }
     var j = 0;
     var k = 0;
     console.log("Does this work? " + currentWord);
@@ -110,11 +115,17 @@ document.onkeyup = function(event) {
             incorrectGuessesRemaining = 6;
             document.getElementById("guesses").innerHTML = incorrectGuessesRemaining;
             displayedWord = [];
-            currentWord = newWord();
-            // var currentWord = newWord();
-            displayWord();
-            // console.log(currentWord);
-            return;
+            if(words.length>0) {
+                currentWord = newWord();
+                // var currentWord = newWord();
+                displayWord();
+                // console.log(currentWord);
+                return;
+            }
+            else {
+                document.getElementById("currentWord").innerHTML = "There are no more words. Thank you for playing!";
+                return;
+            }
         }
     }
     
@@ -147,8 +158,12 @@ document.onkeyup = function(event) {
     console.log("displayed word length: " + displayedWord.length)
 
     if(correctLetterCounter === displayedWord.length) {
-        
-        displayedWord = [];
+        if(words.length>0) {
+            incorrectGuesses = [];
+            document.getElementById("guessedLetters").innerHTML = "";
+            incorrectGuessesRemaining = 6;
+            document.getElementById("guesses").innerHTML = incorrectGuessesRemaining;
+            displayedWord = [];
         currentWord = newWord();
         // var currentWord = newWord();
         displayWord();
@@ -156,6 +171,11 @@ document.onkeyup = function(event) {
         wins++;
         console.log(wins);
         document.getElementById("wins").innerHTML = wins;
+
+        }
+        else {
+            document.getElementById("currentWord").innerHTML = "There are no more words. Thank you for playing!";
+        }
         }
 }
 
